@@ -1,0 +1,10 @@
+.form-group a i {
+    font-family: FontAwesome;
+    margin: 0 auto;
+    font-size: 5rem;
+    font-style: normal;
+  }
+  .min-container .card-panel form .fa {
+    top: 13px;
+    right: 1rem;
+  }
