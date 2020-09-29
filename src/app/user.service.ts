@@ -20,15 +20,6 @@ export class UserService {
  
   
 
-  
-
-  
- 
-
-  
-
-
-
   addUser(user:User):Observable<Object>{
    
    return this.http.post("http://localhost:3000/users" , user);

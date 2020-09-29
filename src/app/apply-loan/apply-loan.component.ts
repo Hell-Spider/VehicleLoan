@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {UserService} from '../user.service';
+
 import {User} from '../User'
+import { UserApplyService } from '../user-apply.service';
 
 
 @Component({
@@ -66,11 +68,29 @@ export class ApplyLoanComponent implements OnInit {
   documentDetails:FormGroup
   vehicleDetails:FormGroup
   loanDetails:FormGroup
-  constructor(private fb: FormBuilder) { }
+
+
+  first:string ;
+  users:User[];
+
+
+  constructor(private fb: FormBuilder , private applyService: UserApplyService , private service:UserService) { }
 
   ngOnInit(): void {
+    this.service.getAllUsers().subscribe(data=>{
+      this.users = data;
+    });
 
+   
+
+    
+ 
+    
     this.applyForm = this.fb.group({  
+      first:[''],
+      last:[''],
+      email:[''],
+      mobile:[''],
       emi:['',Validators.required],
       address:['',Validators.required],
       district:['',Validators.required],
@@ -105,6 +125,15 @@ export class ApplyLoanComponent implements OnInit {
        date:['',Validators.required],
     })
 
+
+
+
+ 
+
   }
+
+
+
+
 
 }

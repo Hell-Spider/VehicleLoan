@@ -20,7 +20,7 @@
             <h1>Apply for Loan<i id = "icon1" class="fa fa-location-arrow" aria-hidden="true"></i></h1>
            
             <form [formGroup] = "applyForm" *ngIf = "step1" (submit) = "onStep1()">
-                <input type = "text" placeholder = "Enter your first name" formControlName = "first" ><br/>
+                <input type = "text" placeholder = "Enter your first name" formControlName = "first"  value ={{first}}><br/>
                 <input type = "text" placeholder="Enter your last name" formControlName = "last" ><br/>
                 <input type = "email" placeholder="Enter your email-id" formControlName = "email"><br/>
                 <input type = "text" placeholder="Enter your mobile number" formControlName = "mobile"><br/>

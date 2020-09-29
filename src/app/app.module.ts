@@ -16,6 +16,7 @@ import { ApplyLoanComponent } from './apply-loan/apply-loan.component';
 import { EMIcalculateComponent } from './emicalculate/emicalculate.component';
 import { HttpClientModule } from '@angular/common/http';
 import {UserService} from './user.service';
+import {UserApplyService} from './user-apply.service'
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { DocumentationComponent } from './documentation/documentation.component'
@@ -46,7 +47,7 @@ import { DocumentationComponent } from './documentation/documentation.component'
     ReactiveFormsModule, FormsModule,HttpClientModule
 
   ],
-  providers:  [UserService],
+  providers:  [UserService,UserApplyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
