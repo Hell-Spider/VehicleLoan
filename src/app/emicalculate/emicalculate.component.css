@@ -1,0 +1,44 @@
+.emi{
+    margin-top:120px;
+}
+
+.emi1{
+  
+    border:1px solid black;
+   
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+ 
+}
+
+.calc{
+    width:500px;
+    
+    border:1px solid black;
+   
+}
+
+.calc1 , .calc2 , .calc3{
+    display: flex;
+    justify-content: space-between;
+    font-size:1.4rem;
+    height:50px;
+    margin-bottom: 1.3rem;
+
+    
+}
+
+
+.display{
+    background-color: white;
+    width:100px;
+    text-align: center;
+    padding:
+    
+}
+
+button{
+    padding: 0.7rem 2rem;
+    font-size:1.2rem;
+}

@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "name": "Ridhi",
+      "email": "ridhiagarwal58@gmail.com",
+      "gender": "Female",
+      "mobile": "",
+      "age": 12,
+      "password": "12",
+      "id": 1
+    },
+    {
+      "name": "SANWAR MAL AGARWAL SUNITA",
+      "email": "sdhagarwal2@gmail.com",
+      "gender": "Female",
+      "mobile": "",
+      "age": 1,
+      "password": "2",
+      "id": 2
+    },
+    {
+      "name": "a",
+      "email": "r@gmail.com",
+      "gender": "Female",
+      "mobile": "7062695983",
+      "age": 6,
+      "password": "5",
+      "id": 3
+    }
+  ]
+}
