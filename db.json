@@ -4,28 +4,19 @@
       "name": "Ridhi",
       "email": "ridhiagarwal58@gmail.com",
       "gender": "Female",
-      "mobile": "",
+      "mobile": "7877797889",
       "age": 12,
       "password": "12",
       "id": 1
     },
     {
-      "name": "SANWAR MAL AGARWAL SUNITA",
+      "name": "Indranil",
       "email": "sdhagarwal2@gmail.com",
-      "gender": "Female",
-      "mobile": "",
+      "gender": "male",
+      "mobile": "8989863924",
       "age": 1,
       "password": "2",
       "id": 2
-    },
-    {
-      "name": "a",
-      "email": "r@gmail.com",
-      "gender": "Female",
-      "mobile": "7062695983",
-      "age": 6,
-      "password": "5",
-      "id": 3
     }
   ],
   "applyUsers": [
@@ -39,55 +30,19 @@
       "pan": "",
       "salarySlip": "",
       "addressProof": "",
-      "id": 1
-    },
-    {
-      "address": "",
-      "state": "",
-      "city": "",
-      "emptype": "",
-      "salary": "",
-      "aadhar": "",
-      "pan": "",
-      "salarySlip": "",
-      "addressProof": "",
-      "id": 2
-    },
-    {
-      "address": "",
-      "state": "",
-      "city": "",
-      "emptype": "",
-      "salary": "",
-      "aadhar": "",
-      "pan": "",
-      "salarySlip": "",
-      "addressProof": "",
-      "id": 3
-    },
-    {
-      "address": "Hostel no 7 manit bhopal",
-      "state": "Rajasthan",
-      "city": "Ajmer",
-      "emptype": "Salaried",
-      "salary": "45",
-      "aadhar": "",
-      "pan": "C:\\fakepath\\.gitignore",
-      "salarySlip": "",
-      "addressProof": "",
-      "id": 4
-    },
-    {
-      "address": "",
-      "state": "",
-      "city": "",
-      "emptype": "",
-      "salary": "",
-      "aadhar": "",
-      "pan": "",
-      "salarySlip": "",
-      "addressProof": "",
       "id": 5
+    },
+    {
+      "address": "",
+      "state": "",
+      "city": "",
+      "emptype": "",
+      "salary": "",
+      "aadhar": "",
+      "pan": "",
+      "salarySlip": "",
+      "addressProof": "",
+      "id": 6
     }
   ],
   "loanApplication": [

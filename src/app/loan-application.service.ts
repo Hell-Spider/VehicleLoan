@@ -19,7 +19,10 @@ export class LoanApplicationService {
    
    return this.http.post("http://localhost:3000/loanApplication" + '/' + localStorage.getItem("userEmail") , loan);
   }
-
+  addLoanApplicationG(loan:LoanApplication):Observable<Object>{
+   
+    return this.http.post("http://localhost:3000/loanApplication" + '/' + localStorage.getItem("userEmail") , loan);
+   }
   getAllLoanApplication():Observable<LoanApplication[]>{
   
     return this.http.get<LoanApplication[]>("http://localhost:3000/loanApplication");
