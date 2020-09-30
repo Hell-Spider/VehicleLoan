@@ -1,10 +1,9 @@
+import {UserApply} from './UserApply'
+
+
 export class LoanApplication{
     chassisNo:string;
-	existingEMI:number;
-	tenure:number;
-	interest:number;
-	amount:number;
-	appdate:Date;
+	
 	status:string;
 	brand:string;
 	colour:string;
@@ -13,8 +12,15 @@ export class LoanApplication{
 	exShowPrice:number;
     onRoadPrice:number;
     
-    constructor(chassisNo:string,existingEMI:number, tenure:number, interest:number, amount:number, brand:string, colour:string, model:string, type:number, exShowPrice:number,
-        onRoadPrice:number) {
+    existingEMI:number;
+	tenure:number;
+	interest:number;
+	amount:number;
+    appdate:Date;
+    userApply:UserApply;
+    
+    constructor(chassisNo:string, brand:string, colour:string, model:string, type:number, exShowPrice:number,
+        onRoadPrice:number ,existingEMI:number, tenure:number, interest:number, amount:number, userApply:UserApply) {
     this.chassisNo = chassisNo,
     this.existingEMI = existingEMI;
     this.tenure = tenure;
@@ -26,5 +32,6 @@ export class LoanApplication{
     this.type = type;
     this.exShowPrice = exShowPrice;
     this.onRoadPrice = onRoadPrice;
+    this.userApply = userApply;
 }
 }

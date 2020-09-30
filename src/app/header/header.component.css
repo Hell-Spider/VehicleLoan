@@ -73,7 +73,7 @@
 
 
 
-.header2 ul{
+.loginMain{
 
 	list-style: none;
 	display: flex;
@@ -96,12 +96,18 @@
 
 }
 
+
+
 .login a{
 	background-color: #053852;
 	color:white;
 	padding: 0.5rem 1rem;
 	border-radius: 10px;
 }
+
+
+
+
 
 @media(max-width:1100px)
 {

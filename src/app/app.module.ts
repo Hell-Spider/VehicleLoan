@@ -20,6 +20,7 @@ import {UserApplyService} from './user-apply.service'
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { DocumentationComponent } from './documentation/documentation.component'
+import { LoanApplicationService } from './loan-application.service';
 
 
 
@@ -47,7 +48,7 @@ import { DocumentationComponent } from './documentation/documentation.component'
     ReactiveFormsModule, FormsModule,HttpClientModule
 
   ],
-  providers:  [UserService,UserApplyService],
+  providers:  [UserService,UserApplyService , LoanApplicationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

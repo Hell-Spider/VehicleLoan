@@ -28,9 +28,122 @@
       "id": 3
     }
   ],
-
-  "applyUsers":[
-    
-
+  "applyUsers": [
+    {
+      "address": "",
+      "state": "",
+      "city": "",
+      "emptype": "",
+      "salary": "",
+      "aadhar": "",
+      "pan": "",
+      "salarySlip": "",
+      "addressProof": "",
+      "id": 1
+    },
+    {
+      "address": "",
+      "state": "",
+      "city": "",
+      "emptype": "",
+      "salary": "",
+      "aadhar": "",
+      "pan": "",
+      "salarySlip": "",
+      "addressProof": "",
+      "id": 2
+    },
+    {
+      "address": "",
+      "state": "",
+      "city": "",
+      "emptype": "",
+      "salary": "",
+      "aadhar": "",
+      "pan": "",
+      "salarySlip": "",
+      "addressProof": "",
+      "id": 3
+    }
+  ],
+  "loanApplication": [
+    {
+      "chassisNo": "",
+      "existingEMI": "1",
+      "tenure": 1,
+      "interest": 1,
+      "amount": 1,
+      "brand": "",
+      "colour": "",
+      "model": "",
+      "type": "",
+      "exShowPrice": "",
+      "onRoadPrice": "",
+      "id": 1,
+      "users": [
+        {
+          "name": "Ridhi",
+          "email": "ridhiagarwal58@gmail.com",
+          "gender": "Female",
+          "mobile": "",
+          "age": 12,
+          "password": "12",
+          "id": 1
+        }
+      ]
+    },
+    {
+      "chassisNo": "",
+      "existingEMI": "",
+      "tenure": "",
+      "interest": "",
+      "amount": 2,
+      "brand": "",
+      "colour": "",
+      "model": "",
+      "type": "",
+      "exShowPrice": "",
+      "onRoadPrice": "2",
+      "id": 2
+    },
+    {
+      "chassisNo": "",
+      "existingEMI": "",
+      "tenure": "",
+      "interest": "",
+      "amount": "",
+      "brand": "",
+      "colour": "",
+      "model": "",
+      "type": "",
+      "exShowPrice": "",
+      "onRoadPrice": "",
+      "id": 3
+    },
+    {
+      "chassisNo": "",
+      "existingEMI": "2",
+      "tenure": "",
+      "interest": 4,
+      "amount": 2,
+      "brand": "",
+      "colour": "ee",
+      "model": "",
+      "type": "",
+      "exShowPrice": "",
+      "onRoadPrice": "",
+      "userApply": {
+        "address": "",
+        "state": "",
+        "city": "",
+        "emptype": "",
+        "salary": "",
+        "aadhar": "",
+        "pan": "",
+        "salarySlip": "",
+        "addressProof": ""
+      },
+      "id": 4
+    }
   ]
 }

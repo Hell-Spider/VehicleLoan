@@ -20,22 +20,16 @@
             <h1>Apply for Loan<i id = "icon1" class="fa fa-location-arrow" aria-hidden="true"></i></h1>
            
             <form [formGroup] = "applyForm" *ngIf = "step1" (submit) = "onStep1()">
-                <input type = "text" placeholder = "Enter your first name" formControlName = "first"  value ={{first}}><br/>
-                <input type = "text" placeholder="Enter your last name" formControlName = "last" ><br/>
-                <input type = "email" placeholder="Enter your email-id" formControlName = "email"><br/>
-                <input type = "text" placeholder="Enter your mobile number" formControlName = "mobile"><br/>
+                <input type = "text" placeholder = "Enter your first name" formControlName = "first" ><br/>
+                <input type = "text" placeholder="Enter your last name" formControlName = "last"  ><br/>
+                <input type = "email" placeholder="Enter your email-id" formControlName = "email" ><br/>
+                <input type = "text" placeholder="Enter your mobile number" formControlName = "mobile"  ><br/>
   
-                <p class = "validate" *ngIf = "applyForm.controls.emi.errors && (applyForm.controls.emi.touched ||applyForm.controls.emi.dirty)">*Select Existing EMI</p>   
-                <select formControlName = "emi">
-                    <option value="">Existing EMI</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </select><br/>
                 <p class = "validate" *ngIf = "applyForm.controls.address.errors && (applyForm.controls.address.touched ||applyForm.controls.address.dirty)">*Address required</p>   
                 <input type = "text" placeholder="Enter your Address" formControlName = "address"><br/>
                
-                <p class = "validate" *ngIf = "applyForm.controls.district.errors && (applyForm.controls.district.touched ||applyForm.controls.district.dirty)">*Cityrequired</p>   
-                <select style = "margin-right:4rem;" formControlName = "district">
+                <p class = "validate" *ngIf = "applyForm.controls.city.errors && (applyForm.controls.city.touched ||applyForm.controls.city.dirty)">*Cityrequired</p>   
+                <select style = "margin-right:4rem;" formControlName = "city">
                     <option value ="">City</option>
                     <option>Ajmer</option>
                 </select>
@@ -57,7 +51,7 @@
                     <option>Self-Employed</option>
                     <option>Salaried</option>
                 </select><br/>
-                <button [disabled] = "applyForm.invalid">Next</button>
+                <button >Next</button>
   
             </form>
   
@@ -77,7 +71,7 @@
                 <p class = "validate" *ngIf = "documentDetails.controls.salary.errors && (documentDetails.controls.salary.touched ||documentDetails.controls.salary.dirty)">*Salary Slip required</p>
                 <input type = "file" formControlName="salary"><br/>
                 <button type = "button" (click)= "onStep2Prev()" >Previous</button>
-                <button type = "submit" [disabled] = "documentDetails.invalid" >Next</button>
+                <button type = "submit"  >Next</button>
   
             </form>
   
@@ -94,11 +88,17 @@
                 <input type = "text" placeholder="Vehicle Type" formControlName = "type"><br/>
                 <p class = "validate" *ngIf = "vehicleDetails.controls.onRoad.errors && (vehicleDetails.controls.onRoad.touched ||vehicleDetails.controls.onRoad.dirty)">*On road price required</p>
                 <input type = "text" placeholder="On Road Price" formControlName="onRoad"><br/>
-                <input type = "text" placeholder="Vehicle Colour" formControlName="colour"><br/>
+                <input type = "text" placeholder="Vehicle Colour" formControlName="color"><br/>
                 <button type = "button" (click)= "onStep3Prev()">Previous</button>
-                <button  type = "submit" [disabled]="vehicleDetails.invalid">Next</button>
+                <button  type = "submit">Next</button>
             </form>
+
+
+
             <form *ngIf = "step4" [formGroup] = "loanDetails" (submit) = "onStep4()">
+                
+                <p class = "validate" *ngIf = "loanDetails.controls.emi.errors && (loanDetails.controls.emi.touched ||loanDetails.controls.emi.dirty)">*Select Existing EMI</p>   
+               <input type ="text" placeholder="Existing EMI" formControlName = "emi"><br/>
                 <p class = "validate" *ngIf = "loanDetails.controls.loanAmount.errors && (loanDetails.controls.loanAmount.touched ||loanDetails.controls.loanAmount.dirty)">*Loan Amount required</p>
                 <input type = "number" placeholder="Loan Amount" formControlName ="loanAmount"><br/>
                 <p class = "validate" *ngIf = "loanDetails.controls.loanTenure.errors && (loanDetails.controls.loanTenure.touched ||loanDetails.controls.loanTenure.dirty)">*Loan Tenure required</p>
@@ -108,7 +108,7 @@
                 <p class = "validate" *ngIf = "loanDetails.controls.date.errors && (loanDetails.controls.date.touched ||loanDetails.controls.date.dirty)">*Date required</p>
                 <input type = "date" formControlName ="date"><br/>
                 <button type = "button" (click)= "onStep4Prev()">Previous</button>
-                <button  type = "submit" [disabled]="loanDetails.invalid">Submit</button>
+                <button  type = "submit" >Submit</button>
             </form>
         </div>
     </div>
