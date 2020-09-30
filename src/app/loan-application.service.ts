@@ -17,7 +17,7 @@ export class LoanApplicationService {
 
   addLoanApplication(loan:LoanApplication):Observable<Object>{
    
-   return this.http.post("http://localhost:3000/loanApplication" , loan);
+   return this.http.post("http://localhost:3000/loanApplication" + '/' + localStorage.getItem("userEmail") , loan);
   }
 
   getAllLoanApplication():Observable<LoanApplication[]>{

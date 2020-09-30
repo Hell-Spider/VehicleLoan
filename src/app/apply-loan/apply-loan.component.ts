@@ -27,6 +27,9 @@ export class ApplyLoanComponent implements OnInit {
   show2:String = 'hidden';
   show3:String = 'hidden';
 
+
+
+
   onStep1(){
     this.step1 = false;
     this.step2 = true;

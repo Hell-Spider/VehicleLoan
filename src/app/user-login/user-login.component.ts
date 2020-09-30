@@ -57,6 +57,7 @@ export class UserLoginComponent implements OnInit {
             this.name = u.name;
            
             localStorage.setItem("loginName" , u.name );
+            localStorage.setItem("loginEmail" , u.email);
             alert(localStorage.getItem("loginName"))
            
             this.router.navigate(['userDashboard']);

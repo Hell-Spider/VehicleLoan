@@ -64,6 +64,30 @@
       "salarySlip": "",
       "addressProof": "",
       "id": 3
+    },
+    {
+      "address": "Hostel no 7 manit bhopal",
+      "state": "Rajasthan",
+      "city": "Ajmer",
+      "emptype": "Salaried",
+      "salary": "45",
+      "aadhar": "",
+      "pan": "C:\\fakepath\\.gitignore",
+      "salarySlip": "",
+      "addressProof": "",
+      "id": 4
+    },
+    {
+      "address": "",
+      "state": "",
+      "city": "",
+      "emptype": "",
+      "salary": "",
+      "aadhar": "",
+      "pan": "",
+      "salarySlip": "",
+      "addressProof": "",
+      "id": 5
     }
   ],
   "loanApplication": [
@@ -144,6 +168,31 @@
         "addressProof": ""
       },
       "id": 4
+    },
+    {
+      "chassisNo": "34",
+      "existingEMI": "3",
+      "tenure": 3,
+      "interest": 3,
+      "amount": 4,
+      "brand": "",
+      "colour": "red",
+      "model": "",
+      "type": "",
+      "exShowPrice": "",
+      "onRoadPrice": "",
+      "userApply": {
+        "address": "Hostel no 7 manit bhopal",
+        "state": "Rajasthan",
+        "city": "Ajmer",
+        "emptype": "Salaried",
+        "salary": "45",
+        "aadhar": "",
+        "pan": "C:\\fakepath\\.gitignore",
+        "salarySlip": "",
+        "addressProof": ""
+      },
+      "id": 5
     }
   ]
 }

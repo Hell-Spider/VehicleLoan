@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   scrollHead = false;
   showDrop:boolean = false;
   showLogin = true;
+  link="user-login";
   
   @HostListener("document:scroll")
   scrollFunction()
@@ -43,6 +44,7 @@ this.scrollHead = false;
      this.name = localStorage.getItem("loginName");
      this.showDrop = true;
      this.showLogin=false;
+     this.link = "apply-loan";
    
     }
 
