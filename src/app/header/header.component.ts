@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   scrollHead = false;
   showDrop:boolean = false;
+  list:boolean = false;
   showLogin = true;
   link="user-login";
   
@@ -42,7 +43,7 @@ this.scrollHead = false;
     if(localStorage.getItem("loginName")!=null)
     {
      this.name = localStorage.getItem("loginName");
-     this.showDrop = true;
+    this.showDrop=true;
      this.showLogin=false;
      this.link = "apply-loan";
    
@@ -59,7 +60,16 @@ logOut()
   localStorage.removeItem("loginName")
   this.showLogin=true;
   this.showDrop = false;
+ 
+  
 }
+
+
+loginList()
+{
+  this.list = true;
+}
+
 
 
  

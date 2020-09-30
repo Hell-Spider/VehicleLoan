@@ -160,7 +160,8 @@ usersApply:UserApply[];
 
   }
 
-  loanApp:LoanApplication[]
+  loanApp:LoanApplication[];
+  loanApp1:LoanApplication[];
   
 
   onStep4()
@@ -180,6 +181,7 @@ usersApply:UserApply[];
     
 
       this.loanService.addLoanApplication(u1).subscribe(data=> this.loanApp.push(u1));
+      this.loanService.addLoanApplicationG(u1).subscribe(data=>this.loanApp1.push(u1))
   }
 
 

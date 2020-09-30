@@ -17,22 +17,14 @@
 				<li><a href = "emi-calculator">EMI Calculator</a></li>
 				<li><a href = "eligibility">Eligibility</a></li>
 				<li  *ngIf = "showLogin" class = "login"><a href = "app-login"><i class="fa fa-user" aria-hidden="true"></i>{{name}}</a>	</li>
-                 <li  *ngIf = "showDrop">
-					 <!-- <select>
-						 <option>{{name}}</option>
-						 <option>Dashboard</option>
-						 <option><button (click) = "logOut()">Log out</button></option>
-					 </select> -->
-                
-                    
-					 <div > 
-                        <ul>
-						<li>{{name}}</li>
-						<li >Dashboard</li>
-						<li><button (click) ="logOut()"> Log out</button></li>
+                 <li *ngIf = "showDrop">                    
+                        <ul class = "drop">
+						<li><button (click)="loginList()">  <i class="fa fa-user" aria-hidden="true"></i>  {{name}}</button></li>
+						<li *ngIf = "list"><button>Dashboard</button></li>
+						<li *ngIf = "list"><button (click) ="logOut()"> Log out</button></li>
 					</ul>
 
-					 </div>
+					 
 				 </li>
 				
 			</ul>
