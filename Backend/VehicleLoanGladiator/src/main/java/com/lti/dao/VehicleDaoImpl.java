@@ -48,6 +48,10 @@ public class VehicleDaoImpl implements VehicleDao {
 	// ADMIN 
 	// VIEW
 	@Override
+	public AdminDetails showAdminDetailsByEmail(String email) {
+		return entityManager.find(AdminDetails.class, email);
+	}
+	@Override
 	public List<UserBasic> showAllUserRegistrationDetails() {
 		String jpql = "select u from UserBasic u";
 		TypedQuery<UserBasic> tquery = entityManager.createQuery(jpql,UserBasic.class);
@@ -69,6 +73,12 @@ public class VehicleDaoImpl implements VehicleDao {
 	public List<LoanAppTable> showAllRejectedLoanApplications() {
 		String jpql = "select l from LoanAppTable l where l.status='PENDING'";
 		TypedQuery<LoanAppTable> tquery = entityManager.createQuery(jpql,LoanAppTable.class);
+		return tquery.getResultList();
+	}
+	@Override
+	public List<UserBasic> showAllApprovedUsers() {
+		String jpql = "select u from UserBasic u where u.userdetails.userId in (select a.user.userId from Account a)";
+		TypedQuery<UserBasic> tquery = entityManager.createQuery(jpql,UserBasic.class);
 		return tquery.getResultList();
 	}
 
@@ -135,6 +145,9 @@ public class VehicleDaoImpl implements VehicleDao {
 	public Approved showApprovedByLoanId(int loanId) {
 		return entityManager.find(Approved.class, loanId);
 	}
+
+
+
 
 
 

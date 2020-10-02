@@ -22,10 +22,12 @@ public interface VehicleDao {
 	
 	// ADMIN
 	// VIEW
+	public AdminDetails showAdminDetailsByEmail(String email);
 	public List<UserBasic> showAllUserRegistrationDetails();
 	public Account getAccountByEmail(String email);
 	public List<LoanAppTable> showAllAcceptedLoanApplications();
 	public List<LoanAppTable> showAllRejectedLoanApplications();
+	public List<UserBasic> showAllApprovedUsers();
 	
 
 	

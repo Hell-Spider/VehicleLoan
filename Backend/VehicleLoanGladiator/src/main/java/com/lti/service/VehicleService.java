@@ -25,10 +25,12 @@ public interface VehicleService {
 	
 	// ADMIN
 	// VIEW
+	public AdminDetails geAdminRegistrationdetails(String email);
 	public List<UserBasic> findAllUserRegistrationDetails(); 
 	public Account getAccountByEmailService(String email);
 	public List<LoanAppTable> viewAllAcceptedLoanApplications();
 	public List<LoanAppTable> viewAllRejectedLoanApplications();
+	public List<UserBasic> viewAllApprovedUsers();
 	
 	// USER
 	// REGISTER
@@ -50,7 +52,10 @@ public interface VehicleService {
 	
 	
 	// USER LOGIN
-	public boolean verifyLogin(LoginDto login);
+	public boolean verifyUserLogin(LoginDto login);
+	
+	// ADMIN-LOGIN
+	public boolean verifyAdminLogin(LoginDto login);
 	
 	
 	// OTP GENERATE SERVICE

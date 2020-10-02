@@ -41,7 +41,7 @@ public class VehicleController {
 	// ADMIN
 	// REGISTER
 	// http://localhost:9091/VehicleLoanApp/users/RegisterAdmin
-	@GetMapping("/RegisterAdmin")
+	@PostMapping("/RegisterAdmin")
 	public void addAdmin(@RequestBody AdminDetails admin)
 	{
 		service.adminRegisterService(admin);
@@ -123,6 +123,23 @@ public class VehicleController {
 	public List<LoanAppTable> getAllAcceptedLoanApplications()
 	{
 		return service.viewAllAcceptedLoanApplications();
+	}
+	
+	// ADMIN DETAILS BY EMAIL
+	// http://localhost:9091/VehicleLoanApp/users/ViewAdminRegistrationDetails/{email}
+	@GetMapping("/ViewAdminRegistrationDetails/{email}")
+	public AdminDetails viewAdminRegistrationDetails(@PathVariable String email)
+	{
+		return service.geAdminRegistrationdetails(email);
+	}
+	
+	// ADMIN
+	// VIEW ALL APPROVED USERS
+	// http://localhost:9091/VehicleLoanApp/users/ViewApprovedUsers
+	@GetMapping("/ViewApprovedUsers")
+	public List<UserBasic> ApprovedUsers()
+	{
+		return service.viewAllApprovedUsers();
 	}
 	
 
@@ -236,17 +253,25 @@ public class VehicleController {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	// LOGIN SERVICE
-	@PostMapping(path = "/login")
-	public ResponseEntity<String> loginadmin(@RequestBody LoginDto login) {
+	@PostMapping(path = "/login/user")
+	public ResponseEntity<String> loginuser(@RequestBody LoginDto login) {
 
-		boolean result = service.verifyLogin(login);
+		boolean result = service.verifyUserLogin(login);
 		if (result) {
 			return ResponseEntity.ok("Login Success");
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
-
-
+	
+	@PostMapping(path = "/login/admin")
+	public ResponseEntity<String> loginadmin(@RequestBody LoginDto login) {
+		boolean result = service.verifyAdminLogin(login);
+		if (result) {
+			return ResponseEntity.ok("Login Success");
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 
 }

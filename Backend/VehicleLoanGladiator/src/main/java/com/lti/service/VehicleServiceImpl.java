@@ -57,6 +57,10 @@ public class VehicleServiceImpl implements VehicleService {
 	// ADMIN
 	// VIEW
 	@Override
+	public AdminDetails geAdminRegistrationdetails(String email) {
+		return dao.showAdminDetailsByEmail(email);
+	}
+	@Override
 	public List<UserBasic> findAllUserRegistrationDetails() {
 		return dao.showAllUserRegistrationDetails();
 	}
@@ -71,6 +75,10 @@ public class VehicleServiceImpl implements VehicleService {
 	@Override
 	public List<LoanAppTable> viewAllRejectedLoanApplications() {
 		return dao.showAllRejectedLoanApplications();
+	}
+	@Override
+	public List<UserBasic> viewAllApprovedUsers() {
+		return dao.showAllApprovedUsers();
 	}
 	
 	
@@ -129,7 +137,7 @@ public class VehicleServiceImpl implements VehicleService {
 	
 	// USER-LOGIN
 	@Override
-	public boolean verifyLogin(LoginDto login) {
+	public boolean verifyUserLogin(LoginDto login) {
 		
 		try {
 			UserBasic reg = dao.showUserRegistrationInformation(login.getEmail());
@@ -141,8 +149,24 @@ public class VehicleServiceImpl implements VehicleService {
 		catch(Exception e) {
 			return false;
 		}
-		return false;
+		return false;	
+	}
+	
+	// ADMIN-LOGIN
+	@Override
+	public boolean verifyAdminLogin(LoginDto login) {
 		
+		try {
+			AdminDetails reg = dao.showAdminDetailsByEmail(login.getEmail());
+			if (reg.getPassword().equals(login.getPassword())) {
+				return true;
+			}
+			
+		}
+		catch(Exception e) {
+			return false;
+		}
+		return false;	
 	}
 
 
@@ -198,6 +222,9 @@ public class VehicleServiceImpl implements VehicleService {
 	      }
 		return emi;
 	}
+
+
+
 
 
 
