@@ -161,6 +161,14 @@ public class UserAdvanced implements Serializable {
 		return pan;
 	}
 
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
 	public void setPan(String pan) {
 		this.pan = pan;
 	}

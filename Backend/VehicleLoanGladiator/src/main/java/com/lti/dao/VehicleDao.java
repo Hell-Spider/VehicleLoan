@@ -24,6 +24,11 @@ public interface VehicleDao {
 	// VIEW
 	public List<UserBasic> showAllUserRegistrationDetails();
 	public Account getAccountByEmail(String email);
+	public List<LoanAppTable> showAllAcceptedLoanApplications();
+	public List<LoanAppTable> showAllRejectedLoanApplications();
+	
+
+	
 	
 	// USER
 	// REGISTER
@@ -41,5 +46,7 @@ public interface VehicleDao {
 	public UserAdvanced showUserDetailsInformation(String email);
 	public List<LoanAppTable> showAllLoanApplication(String email);
 	public LoanAppTable showLoanApplicationByChassis(String chassisNo);
+	public List<Approved> showAllApprovedByEmail(String email);
+	public Approved showApprovedByLoanId(int loanId);
 
 }

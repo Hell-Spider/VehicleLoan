@@ -1,8 +1,10 @@
 package com.lti.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.LoginDto;
+import com.lti.model.Account;
 import com.lti.model.AdminDetails;
 import com.lti.model.Approved;
+import com.lti.model.EmiClass;
 import com.lti.model.LoanAppTable;
 import com.lti.model.UserAdvanced;
 import com.lti.model.UserBasic;
@@ -62,11 +67,34 @@ public class VehicleController {
 		LoanAppTable l = service.getLoanApplicationByChassis(chassisNo);
 		if(l.getStatus().contentEquals("PENDING"))
 		{
-			l.setStatus("APPROVED");
-			service.modifyStatus(l);
-			approved.setEmi(service.EMICalculate(l.getAmount(), l.getTenure(), l.getInterest()));
-			approved.setLoanapp(l);
-			service.AddApprovedDetails(approved);
+			UserAdvanced u = service.getUserDetailsService(email);
+			
+			if(u.getAccount()==null)
+			{
+				l.setStatus("APPROVED");
+				service.modifyStatus(l);
+				approved.setAccount(new Account());
+				approved.getAccount().setUser(u);
+				approved.setEmi(service.EMICalculate(l.getAmount(), l.getTenure(), l.getInterest()));
+				approved.setEmidate(new Date());
+				approved.setLoanapp(l);
+				service.AddApprovedDetails(approved);
+			}
+			else
+			{
+				l.setStatus("APPROVED");
+				service.modifyStatus(l);
+				approved.setAccount(u.getAccount());
+				approved.setEmi(service.EMICalculate(l.getAmount(), l.getTenure(), l.getInterest()));
+				approved.setEmidate(new Date());
+				approved.setLoanapp(l);
+				service.AddApprovedDetails(approved);
+			}
+			
+		}
+		else
+		{
+			System.out.println("Already Approved");
 		}
 	}
 	
@@ -80,6 +108,24 @@ public class VehicleController {
 	{
 		return service.findAllUserRegistrationDetails();
 	}
+	
+	// VIEW ALL THE REJECTED LOAN APPLICATION
+	// http://localhost:9091/VehicleLoanApp/users/Admin/Rejected
+	@GetMapping("/Admin/Rejected")
+	public List<LoanAppTable> getAllRejectedLoanApplications()
+	{
+		return service.viewAllRejectedLoanApplications();
+	}
+	
+	// VIEW ALL THE APPROVED LOAN APPLICATIONS
+	// http://localhost:9091/VehicleLoanApp/users/Admin/Accepted
+	@GetMapping("/Admin/Accepted")
+	public List<LoanAppTable> getAllAcceptedLoanApplications()
+	{
+		return service.viewAllAcceptedLoanApplications();
+	}
+	
+
 	
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -128,12 +174,12 @@ public class VehicleController {
 	
 	// USER
 	// PASSWORD RESET
-	// http://localhost:9091/VehicleLoanApp/users/ResetPassword/{email}/{password}
-	@PutMapping("/ResetPassword/{email}/{password}")
-	public void resetPassword(@PathVariable String email, @PathVariable String password)
+	// http://localhost:9091/VehicleLoanApp/users/ResetPassword/{email}/
+	@PutMapping("/ResetPassword/{email}")
+	public void resetPassword(@PathVariable String email, @RequestBody UserBasic userbasic)
 	{
 		UserBasic u = service.getUserRegistrationdetails(email);
-		u.setPassword(password);
+		u.setPassword(userbasic.getPassword());
 		service.resetPasswordService(u);
 	}
 	
@@ -166,10 +212,40 @@ public class VehicleController {
 		List<LoanAppTable> list = service.getAllLoanApplication(email);
 		return list;
 	}
+	
+	// USER
+	// VIEW ALL APPROVED LOAN DETAILS
+	// http://localhost:9091/VehicleLoanApp/users/ApprovedLoanDetails/{email}
+	@GetMapping("/ApprovedLoaDetails/{email}")
+	public List<Approved> getAllApproved(@PathVariable String email)
+	{
+		return service.viewAllApprovedByEmail(email);
+	}
+	
 
+	// USER
+	// VIEW THE EMI DETAILS 
+	// http://localhost:9091/VehicleLoanApp/users/Approved/EMIList/{loanId}
+	@GetMapping("/Approved/EMIList/{loanId}")
+	public List<EmiClass> getEMIList(@PathVariable int loanId)
+	{
+		Approved ad = service.viewApprovedByLoanId(loanId);
+		return service.calculateEmi(ad.getLoanapp().getAmount(), ad.getLoanapp().getTenure(), ad.getLoanapp().getInterest(),ad.getEmidate());
+	}
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	// LOGIN SERVICE
+	@PostMapping(path = "/login")
+	public ResponseEntity<String> loginadmin(@RequestBody LoginDto login) {
+
+		boolean result = service.verifyLogin(login);
+		if (result) {
+			return ResponseEntity.ok("Login Success");
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 
 
 

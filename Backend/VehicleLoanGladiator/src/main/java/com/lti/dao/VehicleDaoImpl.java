@@ -59,6 +59,19 @@ public class VehicleDaoImpl implements VehicleDao {
 		Query query = entityManager.createQuery(jpql).setParameter("email", email);
 		return (Account)query.getSingleResult();
 	}
+	@Override
+	public List<LoanAppTable> showAllAcceptedLoanApplications() {
+		String jpql = "select l from LoanAppTable l where l.status='APPROVED'";
+		TypedQuery<LoanAppTable> tquery = entityManager.createQuery(jpql,LoanAppTable.class);
+		return tquery.getResultList();
+	}
+	@Override
+	public List<LoanAppTable> showAllRejectedLoanApplications() {
+		String jpql = "select l from LoanAppTable l where l.status='PENDING'";
+		TypedQuery<LoanAppTable> tquery = entityManager.createQuery(jpql,LoanAppTable.class);
+		return tquery.getResultList();
+	}
+
 	
 	
 	// USER
@@ -111,11 +124,17 @@ public class VehicleDaoImpl implements VehicleDao {
 		return entityManager.find(LoanAppTable.class, chassisNo);
 	}
 
-
-
-
-
-
+	@Override
+	public List<Approved> showAllApprovedByEmail(String email) {
+		String jpql = "select a from Approved a where a.loanapp.status='approved' and a.loanapp.user.userId=(select u.userId from UserAdvanced u where u.userregister.email=:email)";
+		TypedQuery<Approved> tquery = entityManager.createQuery(jpql,Approved.class).setParameter("email",email);
+		List<Approved> list = tquery.getResultList();
+		return list;
+	}
+	@Override
+	public Approved showApprovedByLoanId(int loanId) {
+		return entityManager.find(Approved.class, loanId);
+	}
 
 
 

@@ -2,6 +2,12 @@ package com.lti.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +16,11 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.VehicleDao;
+import com.lti.dto.LoginDto;
 import com.lti.model.Account;
 import com.lti.model.AdminDetails;
 import com.lti.model.Approved;
+import com.lti.model.EmiClass;
 import com.lti.model.LoanAppTable;
 import com.lti.model.UserAdvanced;
 import com.lti.model.UserBasic;
@@ -56,6 +64,16 @@ public class VehicleServiceImpl implements VehicleService {
 	public Account getAccountByEmailService(String email) {
 		return dao.getAccountByEmail(email);
 	}
+	@Override
+	public List<LoanAppTable> viewAllAcceptedLoanApplications() {
+		return dao.showAllAcceptedLoanApplications();
+	}
+	@Override
+	public List<LoanAppTable> viewAllRejectedLoanApplications() {
+		return dao.showAllRejectedLoanApplications();
+	}
+	
+	
 	
 	// USER
 	// REGISTER
@@ -99,6 +117,34 @@ public class VehicleServiceImpl implements VehicleService {
 	public LoanAppTable getLoanApplicationByChassis(String chassisNo) {
 		return dao.showLoanApplicationByChassis(chassisNo);
 	}
+	@Override
+	public List<Approved> viewAllApprovedByEmail(String email) {
+		return dao.showAllApprovedByEmail(email);
+	}
+	@Override
+	public Approved viewApprovedByLoanId(int loanId) {
+		return dao.showApprovedByLoanId(loanId);
+	}
+	
+	
+	// USER-LOGIN
+	@Override
+	public boolean verifyLogin(LoginDto login) {
+		
+		try {
+			UserBasic reg = dao.showUserRegistrationInformation(login.getEmail());
+			if (reg.getPassword().equals(login.getPassword())) {
+				return true;
+			}
+			
+		}
+		catch(Exception e) {
+			return false;
+		}
+		return false;
+		
+	}
+
 
 	
 	// OTP SERVICE
@@ -121,10 +167,37 @@ public class VehicleServiceImpl implements VehicleService {
 		double monthlyPayment = (loanAmount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -termInMonths));
 		return BigDecimal.valueOf(monthlyPayment).setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
-
-
-
-
+	
+	
+	@Override
+	// EMI LIST 
+	public List<EmiClass> calculateEmi(double loanAmount, int termInYears, double interestRate,Date appdate)
+	{
+		double monthlyPayment = EMICalculate(loanAmount, termInYears, interestRate);
+		DecimalFormat d = new DecimalFormat("#.##");
+		
+		List<EmiClass> emi = new ArrayList<>();
+		LocalDate approvedDate = Instant.ofEpochMilli(appdate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+	      int paymentNo = 1;
+	      String status="PENDING";
+	      double beginningbalance = loanAmount;
+	      while(paymentNo<=termInYears*12)
+	      {
+	    	  if(LocalDate.now().compareTo(approvedDate.plusMonths(paymentNo))>=0)
+	    		  status = "PAID";
+	    	  else
+	    		  status="PENDING";
+	    	  
+	    	  double interest = beginningbalance*interestRate/1200;
+	    	  double principal = monthlyPayment-interest;
+	    	  double endingbalance = beginningbalance - principal;
+	    	  EmiClass e = new EmiClass(approvedDate.plusMonths(paymentNo),d.format(beginningbalance),d.format(monthlyPayment),d.format(principal),d.format(interest),d.format(Math.abs(endingbalance)),status);
+	    	  emi.add(e);
+	    	  paymentNo++;
+	    	  beginningbalance = endingbalance;
+	      }
+		return emi;
+	}
 
 
 
