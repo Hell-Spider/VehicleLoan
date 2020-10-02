@@ -28,6 +28,7 @@ public interface VehicleDao {
 	public List<LoanAppTable> showAllAcceptedLoanApplications();
 	public List<LoanAppTable> showAllRejectedLoanApplications();
 	public List<UserBasic> showAllApprovedUsers();
+	public List<UserBasic> showAllRejectedUsers();
 	
 
 	
@@ -49,6 +50,7 @@ public interface VehicleDao {
 	public List<LoanAppTable> showAllLoanApplication(String email);
 	public LoanAppTable showLoanApplicationByChassis(String chassisNo);
 	public List<Approved> showAllApprovedByEmail(String email);
+	public List<LoanAppTable> showAllRejectedByEmail(String email);
 	public Approved showApprovedByLoanId(int loanId);
 
 }

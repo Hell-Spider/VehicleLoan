@@ -71,13 +71,19 @@ public class VehicleDaoImpl implements VehicleDao {
 	}
 	@Override
 	public List<LoanAppTable> showAllRejectedLoanApplications() {
-		String jpql = "select l from LoanAppTable l where l.status='PENDING'";
+		String jpql = "select l from LoanAppTable l where l.status='REJECTED'";
 		TypedQuery<LoanAppTable> tquery = entityManager.createQuery(jpql,LoanAppTable.class);
 		return tquery.getResultList();
 	}
 	@Override
 	public List<UserBasic> showAllApprovedUsers() {
 		String jpql = "select u from UserBasic u where u.userdetails.userId in (select a.user.userId from Account a)";
+		TypedQuery<UserBasic> tquery = entityManager.createQuery(jpql,UserBasic.class);
+		return tquery.getResultList();
+	}
+	@Override
+	public List<UserBasic> showAllRejectedUsers() {
+		String jpql = "select u from UserBasic u where u.userdetails.userId in (select l.user.userId from LoanAppTable l where l.status='REJECTED')";
 		TypedQuery<UserBasic> tquery = entityManager.createQuery(jpql,UserBasic.class);
 		return tquery.getResultList();
 	}
@@ -136,15 +142,25 @@ public class VehicleDaoImpl implements VehicleDao {
 
 	@Override
 	public List<Approved> showAllApprovedByEmail(String email) {
-		String jpql = "select a from Approved a where a.loanapp.status='approved' and a.loanapp.user.userId=(select u.userId from UserAdvanced u where u.userregister.email=:email)";
+		String jpql = "select a from Approved a where a.loanapp.status='APPROVED' and a.loanapp.user.userId=(select u.userId from UserAdvanced u where u.userregister.email=:email)";
 		TypedQuery<Approved> tquery = entityManager.createQuery(jpql,Approved.class).setParameter("email",email);
 		List<Approved> list = tquery.getResultList();
 		return list;
 	}
 	@Override
+	public List<LoanAppTable> showAllRejectedByEmail(String email) {
+		String jpql = "select l from LoanAppTable l where l.status='REJECTED' and l.user.userId=(select u.userId from UserAdvanced u where u.userregister.email=:email)";
+		TypedQuery<LoanAppTable> tquery = entityManager.createQuery(jpql,LoanAppTable.class).setParameter("email", email);
+		return tquery.getResultList();
+	}
+	@Override
 	public Approved showApprovedByLoanId(int loanId) {
 		return entityManager.find(Approved.class, loanId);
 	}
+
+
+
+
 
 
 

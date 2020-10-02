@@ -80,6 +80,10 @@ public class VehicleServiceImpl implements VehicleService {
 	public List<UserBasic> viewAllApprovedUsers() {
 		return dao.showAllApprovedUsers();
 	}
+	@Override
+	public List<UserBasic> viewAllRejectedUsers() {
+		return dao.showAllRejectedUsers();
+	}
 	
 	
 	
@@ -132,6 +136,10 @@ public class VehicleServiceImpl implements VehicleService {
 	@Override
 	public Approved viewApprovedByLoanId(int loanId) {
 		return dao.showApprovedByLoanId(loanId);
+	}
+	@Override
+	public List<LoanAppTable> getAllRejectedByEmail(String email) {
+		return dao.showAllRejectedByEmail(email);
 	}
 	
 	
@@ -222,6 +230,10 @@ public class VehicleServiceImpl implements VehicleService {
 	      }
 		return emi;
 	}
+
+
+
+
 
 
 

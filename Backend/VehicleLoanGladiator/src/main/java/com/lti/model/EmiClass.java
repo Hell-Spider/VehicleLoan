@@ -6,7 +6,7 @@ public class EmiClass {
 	
 	private LocalDate date;
 	private String beginningBalance;
-	private String EMI;
+	private String emi;
 	private String principal;
 	private String interest;
 	private String endingBalance;
@@ -16,11 +16,11 @@ public class EmiClass {
 	public void setBeginningBalance(String beginningBalance) {
 		this.beginningBalance = beginningBalance;
 	}
-	public String getEMI() {
-		return EMI;
+	public String getEmi() {
+		return emi;
 	}
-	public void setEMI(String eMI) {
-		EMI = eMI;
+	public void setEmi(String emi) {
+		this.emi = emi;
 	}
 	public String getPrincipal() {
 		return principal;
@@ -47,12 +47,12 @@ public class EmiClass {
 	{
 		
 	}
-	public EmiClass(LocalDate date, String beginningBalance, String eMI, String principal, String interest,
+	public EmiClass(LocalDate date, String beginningBalance, String emi, String principal, String interest,
 			String endingBalance,String status) {
 		super();
 		this.date = date;
 		this.beginningBalance = beginningBalance;
-		this.EMI = eMI;
+		this.emi = emi;
 		this.principal = principal;
 		this.interest = interest;
 		this.endingBalance = endingBalance;
@@ -73,7 +73,7 @@ public class EmiClass {
 
 	@Override
 	public String toString() {
-		return "EmiClass [date=" + date + ", beginningBalance=" + beginningBalance + ", EMI=" + EMI + ", principal="
+		return "EmiClass [date=" + date + ", beginningBalance=" + beginningBalance + ", EMI=" + emi + ", principal="
 				+ principal + ", interest=" + interest + ", endingBalance=" + endingBalance + ", status=" + status
 				+ "]";
 	}

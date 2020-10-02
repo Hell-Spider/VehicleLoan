@@ -70,7 +70,6 @@ public class LoanAppTable implements Serializable {
 	private UserAdvanced user;
 
 	// Approved Loan Mapping
-	@JsonProperty(access = Access.WRITE_ONLY)
 	@OneToOne(mappedBy = "loanapp", cascade = CascadeType.PERSIST)
 	private Approved approved;
 

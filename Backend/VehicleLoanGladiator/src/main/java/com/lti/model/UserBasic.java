@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -40,7 +41,7 @@ public class UserBasic implements Serializable {
 	// User Advanced Mapping
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "USER_DETAILS_ID")
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties(allowGetters = true)
 	private UserAdvanced userdetails;
 
 	// CONSTRUCTORS

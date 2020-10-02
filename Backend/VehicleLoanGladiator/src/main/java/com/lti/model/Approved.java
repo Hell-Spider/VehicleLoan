@@ -16,6 +16,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 @Table(name = "APPROVED_LOANS")
 public class Approved implements Serializable {
@@ -36,12 +39,22 @@ public class Approved implements Serializable {
 	// Account Mapping
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "ACCOUNT_NUMBER")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Account account;
 	
 	// Loan Application Mapping
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "CHASSIS_NUMBER")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private LoanAppTable loanapp;
+
+	public int getLoanId() {
+		return loanId;
+	}
+
+	public void setLoanId(int loanId) {
+		this.loanId = loanId;
+	}
 
 	// CONSTRUCTORS
 	public Approved() {

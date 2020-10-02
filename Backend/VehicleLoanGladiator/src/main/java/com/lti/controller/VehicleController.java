@@ -49,11 +49,10 @@ public class VehicleController {
 	
 	// ADMIN
 	// REJECTING THE LOAN APPLICATION 
-	// http://localhost:9091/VehicleLoanApp/users/Admin/Reject/{email}/{chassisNo}
-	@PutMapping("/Admin/Reject/{email}/{chassisNo}")
-	public void rejectApplication(@PathVariable String email, @PathVariable String chassisNo)
+	// http://localhost:9091/VehicleLoanApp/users/Admin/Reject/{email}
+	@PutMapping("/Admin/Reject/{email}")
+	public void rejectApplication(@PathVariable String email, @RequestBody LoanAppTable loanapp)
 	{
-		LoanAppTable loanapp = service.getLoanApplicationByChassis(chassisNo);
 		loanapp.setStatus("REJECTED");
 		service.modifyStatus(loanapp);
 	}
@@ -140,6 +139,15 @@ public class VehicleController {
 	public List<UserBasic> ApprovedUsers()
 	{
 		return service.viewAllApprovedUsers();
+	}
+	
+	// ADMIN
+	// VIEW ALL REJECTED USERS
+	// http://localhost:9091/VehicleLoanApp/users/ViewRejectedUsers
+	@GetMapping("/ViewRejectedUsers")
+	public List<UserBasic> RejectedUsers()
+	{
+		return service.viewAllRejectedUsers();
 	}
 	
 
@@ -233,12 +241,20 @@ public class VehicleController {
 	// USER
 	// VIEW ALL APPROVED LOAN DETAILS
 	// http://localhost:9091/VehicleLoanApp/users/ApprovedLoanDetails/{email}
-	@GetMapping("/ApprovedLoaDetails/{email}")
+	@GetMapping("/ApprovedLoanDetails/{email}")
 	public List<Approved> getAllApproved(@PathVariable String email)
 	{
 		return service.viewAllApprovedByEmail(email);
 	}
 	
+	// USER
+	// VIEW ALL REJECTED LOAN DETAILS
+	// http://localhost:9091/VehicleLoanApp/users/RejectedLoanDetails/{email}
+	@GetMapping("/RejectedLoanDetails/{email}")
+	public List<LoanAppTable> getAllRejected(@PathVariable String email)
+	{
+		return service.getAllRejectedByEmail(email);
+	}
 
 	// USER
 	// VIEW THE EMI DETAILS 

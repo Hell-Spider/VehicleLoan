@@ -31,6 +31,7 @@ public interface VehicleService {
 	public List<LoanAppTable> viewAllAcceptedLoanApplications();
 	public List<LoanAppTable> viewAllRejectedLoanApplications();
 	public List<UserBasic> viewAllApprovedUsers();
+	public List<UserBasic> viewAllRejectedUsers();
 	
 	// USER
 	// REGISTER
@@ -49,6 +50,7 @@ public interface VehicleService {
 	public List<Approved> viewAllApprovedByEmail(String email);
 	public LoanAppTable getLoanApplicationByChassis(String chassisNo);
 	public Approved viewApprovedByLoanId(int loanId);
+	public List<LoanAppTable> getAllRejectedByEmail(String email);
 	
 	
 	// USER LOGIN
