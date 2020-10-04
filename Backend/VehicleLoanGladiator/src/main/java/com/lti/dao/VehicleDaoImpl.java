@@ -59,7 +59,7 @@ public class VehicleDaoImpl implements VehicleDao {
 	}
 	@Override
 	public Account getAccountByEmail(String email) {
-		String jpql = "select a from Account a where a.user.userId = (select u.userId from UserAdavanced u where u.userregister.email=:email";
+		String jpql = "select a from Account a where a.user.userId = (select u.userId from UserAdvanced u where u.userregister.email=:email)";
 		Query query = entityManager.createQuery(jpql).setParameter("email", email);
 		return (Account)query.getSingleResult();
 	}

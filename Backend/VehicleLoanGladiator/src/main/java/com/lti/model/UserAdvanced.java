@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -66,7 +67,7 @@ public class UserAdvanced implements Serializable {
 
 	// Account Mapping
 	@OneToOne(mappedBy = "user")
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties(allowGetters = true)
 	private Account account;
 
 	public void addLoan(LoanAppTable l) {
