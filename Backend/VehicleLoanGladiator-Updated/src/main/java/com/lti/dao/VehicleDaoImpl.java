@@ -112,6 +112,11 @@ public class VehicleDaoImpl implements VehicleDao {
 	public void passwordReset(UserBasic userbasic) {
 		entityManager.merge(userbasic);
 	}
+	@Override
+	@Transactional(propagation = Propagation.MANDATORY)
+	public void editUserDetails(UserAdvanced user) {
+		entityManager.merge(user);
+	}
 
 	
 	// USER
@@ -157,6 +162,8 @@ public class VehicleDaoImpl implements VehicleDao {
 	public Approved showApprovedByLoanId(int loanId) {
 		return entityManager.find(Approved.class, loanId);
 	}
+
+
 
 
 

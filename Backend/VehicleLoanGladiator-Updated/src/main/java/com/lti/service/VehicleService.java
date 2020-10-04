@@ -41,6 +41,7 @@ public interface VehicleService {
 	// USER
 	// MODIFY
 	public void resetPasswordService(UserBasic userbasic);
+	public void modifyUserDetails(UserAdvanced user);
 	
 	// USER
 	// VIEW 

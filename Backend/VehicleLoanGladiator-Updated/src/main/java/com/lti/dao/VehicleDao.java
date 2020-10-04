@@ -41,6 +41,7 @@ public interface VehicleDao {
 	// USER
 	// MODIFY
 	public void passwordReset(UserBasic userbasic);
+	public void editUserDetails(UserAdvanced user);
 	
 	
 	// USER

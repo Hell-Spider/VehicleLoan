@@ -171,6 +171,49 @@ public class VehicleController {
 			return status;
 		}
 	}
+	
+	// USER
+	// MODIFY HIS USER DETAILS
+	// http://localhost:9091/VehicleLoanApp/users/Modify/{email}
+	@PutMapping("/Modify/{email}")
+	public void modifyUserDetails(@PathVariable String email, @RequestBody UserAdvanced user)
+	{
+		UserAdvanced userdetails = service.getUserDetailsService(email);
+		if(user.getAddress()!=null)
+		{
+			userdetails.setAddress(user.getAddress());
+		}
+		if(user.getState() != null)
+		{
+			userdetails.setState(user.getState());
+		}
+		if(user.getCity() != null)
+		{
+			userdetails.setCity(user.getCity());
+		}
+		if(user.getPin() != null)
+		{
+			userdetails.setPin(user.getPin());
+		}
+		if(user.getEmptype() != null)
+		{
+			userdetails.setEmptype(user.getEmptype());
+		}
+		if(user.getSalary() != 0)
+		{
+			userdetails.setSalary(user.getSalary());
+		}
+		if(user.getSalarySlip() != null)
+		{
+			userdetails.setSalarySlip(user.getSalarySlip());
+		}
+		if(user.getAddressProof() != null)
+		{
+			userdetails.setAddressProof(user.getAddressProof());
+		}
+		service.modifyUserDetails(userdetails);
+	}
+	
 
 	// USER
 	// APPLY FOR LOAN

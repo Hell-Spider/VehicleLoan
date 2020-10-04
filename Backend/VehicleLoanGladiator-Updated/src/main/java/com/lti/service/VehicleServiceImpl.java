@@ -110,6 +110,11 @@ public class VehicleServiceImpl implements VehicleService {
 	public void resetPasswordService(UserBasic userbasic) {
 		dao.passwordReset(userbasic);
 	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void modifyUserDetails(UserAdvanced user) {
+			dao.editUserDetails(user);
+	}
 	
 	// USER
 	// VIEW
@@ -230,6 +235,8 @@ public class VehicleServiceImpl implements VehicleService {
 	      }
 		return emi;
 	}
+
+
 
 
 

@@ -67,7 +67,7 @@ public class UserAdvanced implements Serializable {
 
 	// Account Mapping
 	@OneToOne(mappedBy = "user")
-	@JsonIgnoreProperties(allowGetters = true)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Account account;
 
 	public void addLoan(LoanAppTable l) {

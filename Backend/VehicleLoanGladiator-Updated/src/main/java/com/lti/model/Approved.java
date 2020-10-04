@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -39,7 +40,7 @@ public class Approved implements Serializable {
 	// Account Mapping
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "ACCOUNT_NUMBER")
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonIgnoreProperties(allowGetters = true)
 	private Account account;
 	
 	// Loan Application Mapping
