@@ -54,8 +54,11 @@ public class VehicleController {
 	// http://localhost:9091/VehicleLoanApp/users/Admin/Reject/{email}
 	@PutMapping("/Admin/Reject/{email}")
 	public void rejectApplication(@PathVariable String email, @RequestBody LoanAppTable loanapp) {
-		loanapp.setStatus("REJECTED");
-		service.modifyStatus(loanapp);
+		if(loanapp.getStatus().contentEquals("PENDING"))
+		{
+			loanapp.setStatus("REJECTED");
+			service.modifyStatus(loanapp);
+		}
 	}
 
 	// ADMIN
@@ -76,6 +79,7 @@ public class VehicleController {
 				approved.setEmidate(new Date());
 				approved.setLoanapp(l);
 				service.AddApprovedDetails(approved);
+				mail.send(email,"LOAN APPLICATION APPROVED","<b>CONGRATULATIONS !</b><br>Your Loan Application For Chassis number : "+chassisNo+" is Approved !</p><p>Your Account Number : "+approved.getAccount().getAcc_no()+"</p>");
 			} else {
 				l.setStatus("APPROVED");
 				service.modifyStatus(l);
@@ -84,6 +88,7 @@ public class VehicleController {
 				approved.setEmidate(new Date());
 				approved.setLoanapp(l);
 				service.AddApprovedDetails(approved);
+				mail.send(email,"LOAN APPLICATION APPROVED","<b>CONGRATULATIONS !</b><br>Your Loan Application For Chassis number : "+chassisNo+" is Approved !</p><p>Your Account Number : "+approved.getAccount().getAcc_no()+"</p>");
 			}
 
 		} else {
@@ -137,6 +142,14 @@ public class VehicleController {
 	@GetMapping("/ViewRejectedUsers")
 	public List<UserBasic> RejectedUsers() {
 		return service.viewAllRejectedUsers();
+	}
+	
+	// ADMIN
+	// VIEW ALL PENDING USERS
+	// http://localhost:9091/VehicleLoanApp/users/ViewPendingUsers
+	@GetMapping("/ViewPendingUsers")
+	public List<UserBasic> PendingUsers() {
+		return service.viewAllPendingUsers();
 	}
 
 	// ADMIN
@@ -277,7 +290,13 @@ public class VehicleController {
 	// http://localhost:9091/VehicleLoanApp/users/ViewUserDetails/{email}
 	@GetMapping("/ViewUserDetails/{email}")
 	public UserAdvanced viewUserDetails(@PathVariable String email) {
-		return service.getUserDetailsService(email);
+		try {
+			return service.getUserDetailsService(email);
+		}
+		catch (Exception e) {
+			return null;
+		}
+		
 	}
 
 	// USER
@@ -313,6 +332,16 @@ public class VehicleController {
 		Approved ad = service.viewApprovedByLoanId(loanId);
 		return service.calculateEmi(ad.getLoanapp().getAmount(), ad.getLoanapp().getTenure(),
 				ad.getLoanapp().getInterest(), ad.getEmidate());
+	}
+	
+	
+	// USER
+	// VIEW APPROVED LOAN
+	// http://localhost:9091/VehicleLoanApp/users/Approved/{loanId}
+	@GetMapping("/Approved/{loanId}")
+	public Approved getApprovedById(@PathVariable int loanId)
+	{
+		return service.viewApprovedByLoanId(loanId);
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

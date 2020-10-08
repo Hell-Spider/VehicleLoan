@@ -29,10 +29,8 @@ public interface VehicleDao {
 	public List<LoanAppTable> showAllRejectedLoanApplications();
 	public List<UserBasic> showAllApprovedUsers();
 	public List<UserBasic> showAllRejectedUsers();
-	
+	public List<UserBasic> showAllPendingUsers();
 
-	
-	
 	// USER
 	// REGISTER
 	public void userRegister(UserBasic userbasic);

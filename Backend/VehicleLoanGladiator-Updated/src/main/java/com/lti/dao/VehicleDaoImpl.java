@@ -87,9 +87,15 @@ public class VehicleDaoImpl implements VehicleDao {
 		TypedQuery<UserBasic> tquery = entityManager.createQuery(jpql,UserBasic.class);
 		return tquery.getResultList();
 	}
+	
+	@Override
+	public List<UserBasic> showAllPendingUsers() {
+		String jpql = "select u from UserBasic u where u.userdetails.userId in (select l.user.userId from LoanAppTable l where l.status='PENDING')";
+		TypedQuery<UserBasic> tquery = entityManager.createQuery(jpql,UserBasic.class);
+		return tquery.getResultList();
+	}
 
-	
-	
+
 	// USER
 	// REGISTER
 	@Override
@@ -162,6 +168,8 @@ public class VehicleDaoImpl implements VehicleDao {
 	public Approved showApprovedByLoanId(int loanId) {
 		return entityManager.find(Approved.class, loanId);
 	}
+
+
 
 
 

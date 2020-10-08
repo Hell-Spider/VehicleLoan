@@ -84,6 +84,10 @@ public class VehicleServiceImpl implements VehicleService {
 	public List<UserBasic> viewAllRejectedUsers() {
 		return dao.showAllRejectedUsers();
 	}
+	@Override
+	public List<UserBasic> viewAllPendingUsers() {
+		return dao.showAllPendingUsers();
+	}
 	
 	
 	
@@ -211,7 +215,7 @@ public class VehicleServiceImpl implements VehicleService {
 	public List<EmiClass> calculateEmi(double loanAmount, int termInYears, double interestRate,Date appdate)
 	{
 		double monthlyPayment = EMICalculate(loanAmount, termInYears, interestRate);
-		DecimalFormat d = new DecimalFormat("#.##");
+		DecimalFormat d = new DecimalFormat("#");
 		
 		List<EmiClass> emi = new ArrayList<>();
 		LocalDate approvedDate = Instant.ofEpochMilli(appdate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
@@ -235,17 +239,6 @@ public class VehicleServiceImpl implements VehicleService {
 	      }
 		return emi;
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

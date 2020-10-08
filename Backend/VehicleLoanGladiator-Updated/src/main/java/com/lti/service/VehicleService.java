@@ -32,6 +32,7 @@ public interface VehicleService {
 	public List<LoanAppTable> viewAllRejectedLoanApplications();
 	public List<UserBasic> viewAllApprovedUsers();
 	public List<UserBasic> viewAllRejectedUsers();
+	public List<UserBasic> viewAllPendingUsers();
 	
 	// USER
 	// REGISTER
